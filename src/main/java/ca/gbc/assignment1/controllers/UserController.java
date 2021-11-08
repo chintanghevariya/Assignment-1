@@ -8,9 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+
+/*********************************************************************************
+ * Project: Receipe Book
+ * Assignment: < assignment #1 >
+ * Author(s): Rutik Patel
+ * Student Number: 101235165
+ * Date: 3rd Oct
+ * Description: implement login functionality, sign up and profile etc.
+ *********************************************************************************/
 
 @Controller
 public class UserController {
@@ -43,7 +53,7 @@ public class UserController {
             userFound = true;
         }
         model.addAttribute("userFound", userFound);
-        return "user/login";
+        return "redirect:/recipe/all";
     }
 
     @GetMapping({
@@ -72,9 +82,31 @@ public class UserController {
         return "user/signup";
     }
 
+    @GetMapping({"/profile/{id}"})
+    public String profile(HttpServletRequest request, @PathVariable Long id, Model model) {
+        boolean isLoggedIn = request.getSession().getAttribute("userId") != null;
+        System.out.println(isLoggedIn);
+        if(isLoggedIn) {
+            User user = userService.getById(id).get();
+            model.addAttribute("user", user);
+            model.addAttribute("recipes", user.getRecipes());
+
+            return "user/profile";
+        }
+
+        model.addAttribute("userId", request.getSession().getAttribute("userId"));
+
+        return "redirect:login";
+    }
+
+
+
+
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         request.getSession().removeAttribute("userId");
         return "redirect:/";
     }
+
+
 }

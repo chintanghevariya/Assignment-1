@@ -3,10 +3,10 @@
     <title>navbar</title>
 </head>
 <body>
-    <div class="navbar navbar-dark bg-dark navbar-fixed-top" th:fragment="navbar (loggedIn)">
+    <div class="navbar navbar-dark bg-dark navbar-fixed-top" th:fragment="navbar (loggedIn, currentUserId)">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                Recipe
+            <a class="navbar-brand" href="/recipe/all">
+                Recipes
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -21,6 +21,15 @@
                     </li>
                     <li class="nav-item" th:if="${loggedIn != null && loggedIn}">
                         <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+                    </li>
+                    <li class="nav-item" th:if="${loggedIn != null && loggedIn}">
+                         <a class="nav-link active" aria-current="page" href="/recipe/new"> Add Receipe</a>
+                    </li>
+                    <li class="nav-item" th:if="${loggedIn != null && loggedIn}">
+                        <a class="nav-link active" aria-current="page" href="/search"> Search</a>
+                    </li>
+                    <li class="nav-item" th:if="${loggedIn != null && loggedIn}">
+                        <a class="nav-link active" aria-current="page" th:href="@{'/profile/' + ${currentUserId}}">Profile</a>
                     </li>
                 </ul>
             </div>

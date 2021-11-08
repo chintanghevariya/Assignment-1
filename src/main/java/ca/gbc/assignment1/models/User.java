@@ -2,9 +2,18 @@ package ca.gbc.assignment1.models;
 
 import javax.persistence.*;
 import java.util.List;
+/*********************************************************************************
+ * Project: Receipe Book
+ * Assignment: < assignment #1 >
+ * Author(s): Shrey Patel
+ * Student Number: 101281313
+ * Date: 2nd Oct
+ * Description: implement getters and setters
+ *********************************************************************************/
 
 @Entity
 public class User {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

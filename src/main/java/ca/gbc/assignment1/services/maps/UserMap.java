@@ -9,6 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/*********************************************************************************
+ * Project: Receipe Book
+ * Assignment: < assignment #1 >
+ * Author(s): Shrey Patel
+ * Student Number: 101281313
+ * Date: 2nd Oct
+ * Description: implemented userMaps
+ *********************************************************************************/
+
 @Service
 public class UserMap {
 
